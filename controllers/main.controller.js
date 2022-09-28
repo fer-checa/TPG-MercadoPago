@@ -5,14 +5,25 @@ module.exports ={
         products:index(),
         styles:['home']
     }),
-    // Step 3
+    // Step 3 - AQUI SE VAN AGREGAR PRODUCTOS AL CARRITO:
     addCart: (req,res) => {
         // Find Product in DB
-        // let product = ???
+        let product = one(req.body.id)
         // Check product exist in cart
+        if (req.session.cart.find(item => item.id == product.id)) {
+            req.session.cart= req.session.cart.map(item => {
+                if (item.id == product.id) {
+                    item.quantity = item.quantity + 1
+                }
+                return item
+            })
+
+        }else{
+            req.session.cart.push({...product, quantity:1})
+        }
         // Case 1: Exist and update quantity
         // Case 2: Add cart and set quantity
-        return res.send("Add a new product")
+        return res.redirect('/')
     },
     // Step 5
     updateCart: (req,res) => {

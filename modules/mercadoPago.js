@@ -1,5 +1,5 @@
 // Step 7
-
+// AQUI CREAREMOS LA LOGICA DE LA PREFERENCIA
 // const ??? = require(???)
 // const credential = ??? 
 // let server = ???

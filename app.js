@@ -18,8 +18,8 @@ app.use(session({
     secret: 'secret',
 }));
 
-// Step 2
-// app.use(???)
+// Step 2 AQUI VAMOS A LLAMAR, lo hacemos antes de la ruta y antes de sesion
+app.use(require('./middlewares/cart'))
 
 app.use(require('./routes/main.routes'))
 app.use('/checkout',require('./routes/checkout.routes'))
