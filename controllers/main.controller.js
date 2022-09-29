@@ -10,6 +10,8 @@ module.exports ={
         // Find Product in DB
         let product = one(req.body.id)
         // Check product exist in cart
+
+        // Case 1: Exist and update quantity
         if (req.session.cart.find(item => item.id == product.id)) {
             req.session.cart= req.session.cart.map(item => {
                 if (item.id == product.id) {
@@ -17,12 +19,12 @@ module.exports ={
                 }
                 return item
             })
-
+        // Case 2: Add cart and set quantity
         }else{
             req.session.cart.push({...product, quantity:1})
         }
-        // Case 1: Exist and update quantity
-        // Case 2: Add cart and set quantity
+        
+       
         return res.redirect('/')
     },
     // Step 5
